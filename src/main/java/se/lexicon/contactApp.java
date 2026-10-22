@@ -26,6 +26,7 @@ package se.lexicon;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class contactApp {
 
@@ -160,6 +161,7 @@ public class contactApp {
                 IO.println("Last Name  : " + contact[1]);
                 IO.println("Email      : " + contact[2]);
                 IO.println("Phone      : " + contact[3]);
+                IO.println("Address    : " + contact[4]);
 
             } else {
                 IO.println("Contact not found.");
@@ -175,12 +177,22 @@ public class contactApp {
             return;
         }
 
-        for (String[] contact : contacts.values()) {
-            IO.println("--------------------------");
+        // Get all contact names
+        ArrayList<String> names = new ArrayList<>(contacts.keySet());
+
+// Sort names alphabetically (A-Z)
+        names.sort(String.CASE_INSENSITIVE_ORDER);
+
+// Display contacts in sorted order
+        for (String name : names) {
+            String[] contact = contacts.get(name);
+
+            IO.println("-------------------------");
             IO.println("First Name : " + contact[0]);
             IO.println("Last Name  : " + contact[1]);
             IO.println("Email      : " + contact[2]);
             IO.println("Phone      : " + contact[3]);
+            IO.println("Address    : " + contact[4]);
         }
     }
 
@@ -205,6 +217,7 @@ public class contactApp {
                 IO.println("Last Name  : " + deletedContact[1]);
                 IO.println("Email      : " + deletedContact[2]);
                 IO.println("Phone      : " + deletedContact[3]);
+                IO.println("Address    : " + deletedContact[4]);
                 IO.println("Contact deleted successfully!");
 
             } else {
