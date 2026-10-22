@@ -1,3 +1,27 @@
+/*# Workshop – Contact Management App
+
+## The Scenario
+
+You are building a console-based contact management application.
+
+Think about what a contact manager should do and how a user would interact with it — then build it.
+
+**Create `ContactApp.java`** inside `src/main/java/se/lexicon/`.
+Commit regularly as you make progress.
+
+---
+
+## Requirements
+
+Before writing any code, think through the following:
+
+- **Functionality** — what operations should a contact manager support? What would a user expect to be able to do?
+- **Data** — what information does a contact hold? How should that be represented given your chosen data structure?
+- **Data structure** — which structure fits the way contacts will be stored and accessed? Consider the trade-offs.
+- **Constraints** — what rules should the system enforce? Think about what invalid states should never be allowed.
+- **Code organisation** — how will you separate concerns? Each operation should have a clear home in your code.*/
+
+
 package se.lexicon;
 
 import java.util.HashMap;
