@@ -45,33 +45,35 @@ public class contactApp {
         }
          //methosd2 add contact
         static void addContact() {
-
             IO.println("\n--- Add Contact ---");
+            String firstName = readRequired("Enter first name: ");
+            String lastName = readRequired("Enter last name: ");
 
-            IO.print("Enter first name: ");
-            String firstName = userInput.nextLine();
+            String email=readEmail();// call my email validation mehtod
 
-            IO.print("Enter last name: ");
-            String lastName = userInput.nextLine();
-
-            IO.print("Enter email address: ");
-            String email = userInput.nextLine();
-
-            IO.print("Enter phone number: ");
-            String phone = userInput.nextLine();
+            // Check  the email already exists
+            for (String[] contact : contacts.values()) {
+                if (contact[2].equalsIgnoreCase(email)) {
+                    IO.println("Error: Email already exists!");
+                    return;
+                }
+            }
+            String phone = readRequired("Enter phone number: ");
+            String address = readRequired("Enter address: ");
 
             // Use full name as the hashmap key
             String fullName = firstName + " " + lastName;
 
             // Store contact details
             contacts.put(fullName, new String[]{
-                    firstName, lastName, email, phone
+                    firstName, lastName, email, phone,address
             });
             IO.println("\n--- Added Contact ---");
             IO.println("First Name : " + firstName);
             IO.println("Last Name  : " + lastName);
             IO.println("Email      : " + email);
             IO.println("Phone      : " + phone);
+            IO.println("Address    : " + address);
             IO.println("Contact added successfully!");
         }
        //method:3 update contact
@@ -105,6 +107,7 @@ public class contactApp {
                 IO.println("Last Name  : " + contact[1]);
                 IO.println("Email      : " + contact[2]);
                 IO.println("Phone      : " + contact[3]);
+                IO.println("Address    : " + contact[4]);
                 IO.println("Contact updated successfully!");
 
             } else {
@@ -112,7 +115,7 @@ public class contactApp {
             }
         }
 
-       //methos5: search contact
+       //methods5: search contact
         static void searchContact() {
 
             IO.println("\n--- Search Contact ---");
@@ -170,7 +173,6 @@ public class contactApp {
             if (contacts.containsKey(fullName)) {
 
                 // Remove contact from HashMap
-                contacts.remove(fullName);
 
                 String[] deletedContact = contacts.remove(fullName);
 
@@ -185,5 +187,35 @@ public class contactApp {
                 IO.println("Contact not found.");
             }
         }
-}
+
+            static String readRequired(String message) {
+                while (true) {
+                    IO.print(message);
+                    String value = userInput.nextLine().trim();
+
+                    if (!value.isEmpty()) {
+                        return value;
+                    }
+
+                    IO.println("This field cannot be empty.");
+                }
+            }
+
+    // add readEmail method
+    static String readEmail() {
+        while (true) {
+            String email = readRequired("Enter email address: ");
+
+            if (email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+                return email;
+            }
+
+            IO.println("Invalid email format. Try again.");
+        }
+    }
+
+} // class end
+
+
+
 
