@@ -88,6 +88,11 @@ public class contactApp {
             // Use full name as the hashmap key
             String fullName = firstName + " " + lastName;
 
+            // Check if the full name already exists
+            if (contacts.containsKey(fullName)) {
+                IO.println("Error: Contact name already exists!");
+                return;
+            }
             // Store contact details
             contacts.put(fullName, new String[]{
                     firstName, lastName, email, phone,address
